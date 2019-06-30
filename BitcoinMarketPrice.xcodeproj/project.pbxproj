@@ -14,6 +14,11 @@
 		783C2D4C22C96E4100B1D97C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 783C2D4B22C96E4100B1D97C /* Assets.xcassets */; };
 		783C2D4F22C96E4100B1D97C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783C2D4D22C96E4100B1D97C /* LaunchScreen.storyboard */; };
 		783C2D5A22C96E4100B1D97C /* BitcoinMarketPriceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D5922C96E4100B1D97C /* BitcoinMarketPriceTests.swift */; };
+		783C2D6A22C9705C00B1D97C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6522C9705C00B1D97C /* APIError.swift */; };
+		783C2D6B22C9705C00B1D97C /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6622C9705C00B1D97C /* EndPoint.swift */; };
+		783C2D6C22C9705C00B1D97C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6722C9705C00B1D97C /* HTTPMethod.swift */; };
+		783C2D6D22C9705C00B1D97C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6822C9705C00B1D97C /* APIClient.swift */; };
+		783C2D6E22C9705C00B1D97C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6922C9705C00B1D97C /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		783C2D5522C96E4100B1D97C /* BitcoinMarketPriceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitcoinMarketPriceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		783C2D5922C96E4100B1D97C /* BitcoinMarketPriceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinMarketPriceTests.swift; sourceTree = "<group>"; };
 		783C2D5B22C96E4100B1D97C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		783C2D6522C9705C00B1D97C /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		783C2D6622C9705C00B1D97C /* EndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
+		783C2D6722C9705C00B1D97C /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		783C2D6822C9705C00B1D97C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		783C2D6922C9705C00B1D97C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,7 @@
 		783C2D4022C96E3F00B1D97C /* BitcoinMarketPrice */ = {
 			isa = PBXGroup;
 			children = (
+				783C2D6422C9703200B1D97C /* Networking */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
 				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
 				783C2D4522C96E3F00B1D97C /* Main.storyboard */,
@@ -97,6 +108,18 @@
 				783C2D5B22C96E4100B1D97C /* Info.plist */,
 			);
 			path = BitcoinMarketPriceTests;
+			sourceTree = "<group>";
+		};
+		783C2D6422C9703200B1D97C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				783C2D6822C9705C00B1D97C /* APIClient.swift */,
+				783C2D6522C9705C00B1D97C /* APIError.swift */,
+				783C2D6622C9705C00B1D97C /* EndPoint.swift */,
+				783C2D6722C9705C00B1D97C /* HTTPMethod.swift */,
+				783C2D6922C9705C00B1D97C /* Result.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,7 +224,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				783C2D4A22C96E3F00B1D97C /* BitcoinMarketPrice.xcdatamodeld in Sources */,
+				783C2D6D22C9705C00B1D97C /* APIClient.swift in Sources */,
+				783C2D6A22C9705C00B1D97C /* APIError.swift in Sources */,
+				783C2D6C22C9705C00B1D97C /* HTTPMethod.swift in Sources */,
+				783C2D6B22C9705C00B1D97C /* EndPoint.swift in Sources */,
 				783C2D4422C96E3F00B1D97C /* ViewController.swift in Sources */,
+				783C2D6E22C9705C00B1D97C /* Result.swift in Sources */,
 				783C2D4222C96E3F00B1D97C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
