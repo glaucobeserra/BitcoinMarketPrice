@@ -19,6 +19,10 @@
 		783C2D6C22C9705C00B1D97C /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6722C9705C00B1D97C /* HTTPMethod.swift */; };
 		783C2D6D22C9705C00B1D97C /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6822C9705C00B1D97C /* APIClient.swift */; };
 		783C2D6E22C9705C00B1D97C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6922C9705C00B1D97C /* Result.swift */; };
+		783C2D7222C9714100B1D97C /* BlockchainServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D6F22C9714100B1D97C /* BlockchainServices.swift */; };
+		783C2D7322C9714100B1D97C /* Timespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7022C9714100B1D97C /* Timespan.swift */; };
+		783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7122C9714100B1D97C /* BlockchainClient.swift */; };
+		783C2D7822C9719000B1D97C /* MarketPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7722C9719000B1D97C /* MarketPrice.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,10 @@
 		783C2D6722C9705C00B1D97C /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		783C2D6822C9705C00B1D97C /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		783C2D6922C9705C00B1D97C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		783C2D6F22C9714100B1D97C /* BlockchainServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockchainServices.swift; sourceTree = "<group>"; };
+		783C2D7022C9714100B1D97C /* Timespan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timespan.swift; sourceTree = "<group>"; };
+		783C2D7122C9714100B1D97C /* BlockchainClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockchainClient.swift; sourceTree = "<group>"; };
+		783C2D7722C9719000B1D97C /* MarketPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketPrice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +97,7 @@
 		783C2D4022C96E3F00B1D97C /* BitcoinMarketPrice */ = {
 			isa = PBXGroup;
 			children = (
+				783C2D7622C9718000B1D97C /* Model */,
 				783C2D6422C9703200B1D97C /* Networking */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
 				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
@@ -113,6 +122,7 @@
 		783C2D6422C9703200B1D97C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				783C2D7522C9714600B1D97C /* BlockchainAPI */,
 				783C2D6822C9705C00B1D97C /* APIClient.swift */,
 				783C2D6522C9705C00B1D97C /* APIError.swift */,
 				783C2D6622C9705C00B1D97C /* EndPoint.swift */,
@@ -120,6 +130,24 @@
 				783C2D6922C9705C00B1D97C /* Result.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		783C2D7522C9714600B1D97C /* BlockchainAPI */ = {
+			isa = PBXGroup;
+			children = (
+				783C2D7122C9714100B1D97C /* BlockchainClient.swift */,
+				783C2D6F22C9714100B1D97C /* BlockchainServices.swift */,
+				783C2D7022C9714100B1D97C /* Timespan.swift */,
+			);
+			path = BlockchainAPI;
+			sourceTree = "<group>";
+		};
+		783C2D7622C9718000B1D97C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				783C2D7722C9719000B1D97C /* MarketPrice.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +256,13 @@
 				783C2D6A22C9705C00B1D97C /* APIError.swift in Sources */,
 				783C2D6C22C9705C00B1D97C /* HTTPMethod.swift in Sources */,
 				783C2D6B22C9705C00B1D97C /* EndPoint.swift in Sources */,
+				783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */,
+				783C2D7222C9714100B1D97C /* BlockchainServices.swift in Sources */,
+				783C2D7322C9714100B1D97C /* Timespan.swift in Sources */,
 				783C2D4422C96E3F00B1D97C /* ViewController.swift in Sources */,
 				783C2D6E22C9705C00B1D97C /* Result.swift in Sources */,
 				783C2D4222C96E3F00B1D97C /* AppDelegate.swift in Sources */,
+				783C2D7822C9719000B1D97C /* MarketPrice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
