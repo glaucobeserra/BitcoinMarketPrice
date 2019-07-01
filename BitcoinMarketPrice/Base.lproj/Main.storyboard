@@ -99,6 +99,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lineChartView" destination="uxM-n0-oUE" id="c6k-Bn-rHD"/>
                         <outlet property="marketPriceDateLabel" destination="uX7-vc-enC" id="Rpf-0i-y9J"/>
                         <outlet property="marketPriceDayLabel" destination="ONw-lU-gNf" id="ct6-hf-opU"/>
                         <outlet property="marketPriceLabel" destination="8OZ-XT-ODE" id="661-fg-KJb"/>
