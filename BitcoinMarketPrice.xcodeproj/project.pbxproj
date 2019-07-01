@@ -24,6 +24,8 @@
 		783C2D7322C9714100B1D97C /* Timespan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7022C9714100B1D97C /* Timespan.swift */; };
 		783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7122C9714100B1D97C /* BlockchainClient.swift */; };
 		783C2D7822C9719000B1D97C /* MarketPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7722C9719000B1D97C /* MarketPrice.swift */; };
+		783C2D7D22C9954800B1D97C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7C22C9954800B1D97C /* Date+Extensions.swift */; };
+		783C2D8022C9973E00B1D97C /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */; };
 		990EBBA795EF456A1B4C7C02 /* Pods_BitcoinMarketPriceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D61D10EA159413D5E9758BE /* Pods_BitcoinMarketPriceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +63,8 @@
 		783C2D7022C9714100B1D97C /* Timespan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timespan.swift; sourceTree = "<group>"; };
 		783C2D7122C9714100B1D97C /* BlockchainClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockchainClient.swift; sourceTree = "<group>"; };
 		783C2D7722C9719000B1D97C /* MarketPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketPrice.swift; sourceTree = "<group>"; };
+		783C2D7C22C9954800B1D97C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		7DDE08BBE1EF6357237E5D50 /* Pods-BitcoinMarketPrice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinMarketPrice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinMarketPrice/Pods-BitcoinMarketPrice.release.xcconfig"; sourceTree = "<group>"; };
 		7FE8E9A86ABABFC98BBFA0D1 /* Pods-BitcoinMarketPriceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinMarketPriceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinMarketPriceTests/Pods-BitcoinMarketPriceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A357B0F46609416D1E4704AE /* Pods-BitcoinMarketPriceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinMarketPriceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinMarketPriceTests/Pods-BitcoinMarketPriceTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,8 +124,9 @@
 		783C2D4022C96E3F00B1D97C /* BitcoinMarketPrice */ = {
 			isa = PBXGroup;
 			children = (
-				783C2D7622C9718000B1D97C /* Model */,
 				783C2D6422C9703200B1D97C /* Networking */,
+				783C2D7E22C9955500B1D97C /* Extensions */,
+				783C2D7622C9718000B1D97C /* Model */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
 				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
 				783C2D4522C96E3F00B1D97C /* Main.storyboard */,
@@ -171,6 +176,15 @@
 				783C2D7722C9719000B1D97C /* MarketPrice.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		783C2D7E22C9955500B1D97C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				783C2D7C22C9954800B1D97C /* Date+Extensions.swift */,
+				783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9D00A99D70B36F609A2B2582 /* Frameworks */ = {
@@ -357,12 +371,14 @@
 			files = (
 				783C2D4A22C96E3F00B1D97C /* BitcoinMarketPrice.xcdatamodeld in Sources */,
 				783C2D6D22C9705C00B1D97C /* APIClient.swift in Sources */,
+				783C2D8022C9973E00B1D97C /* Double+Extensions.swift in Sources */,
 				783C2D6A22C9705C00B1D97C /* APIError.swift in Sources */,
 				783C2D6C22C9705C00B1D97C /* HTTPMethod.swift in Sources */,
 				783C2D6B22C9705C00B1D97C /* EndPoint.swift in Sources */,
 				783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */,
 				783C2D7222C9714100B1D97C /* BlockchainServices.swift in Sources */,
 				783C2D7322C9714100B1D97C /* Timespan.swift in Sources */,
+				783C2D7D22C9954800B1D97C /* Date+Extensions.swift in Sources */,
 				783C2D4422C96E3F00B1D97C /* ViewController.swift in Sources */,
 				783C2D6E22C9705C00B1D97C /* Result.swift in Sources */,
 				783C2D4222C96E3F00B1D97C /* AppDelegate.swift in Sources */,

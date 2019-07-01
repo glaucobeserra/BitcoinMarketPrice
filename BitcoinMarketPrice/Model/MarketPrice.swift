@@ -14,8 +14,8 @@ struct MarketPrice: Codable {
 }
 
 struct Value: Codable {
-    let date: Int64
-    let usd: Float64
+    let date: Date
+    let usd: Double
     
     private enum CodingKeys: String, CodingKey {
         case date = "x"

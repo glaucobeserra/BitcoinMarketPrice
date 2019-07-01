@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        getMarketPrice(at: .lastDay)
     }
 
     
@@ -23,7 +24,13 @@ class ViewController: UIViewController {
             switch result {
             case .success(let marketPrice):
                 guard let history = marketPrice?.values else { return }
-                print(history)
+                guard let value = history.first else {return}
+                let date = value.date
+                let valueUSD = value.usd
+                
+                print(date.stringFromDate())
+                print(valueUSD.usdFromDouble())
+                
             case .failure(let error):
                 print(error)
             }

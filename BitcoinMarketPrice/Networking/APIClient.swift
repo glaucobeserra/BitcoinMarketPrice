@@ -37,7 +37,10 @@ extension APIClient {
             case .success:
                 if let data = data {
                     do {
-                        let genericModel = try JSONDecoder().decode(decodingType, from: data)
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .secondsSince1970
+                        
+                        let genericModel = try decoder.decode(decodingType, from: data)
                         completion(genericModel, nil)
                     } catch {
                         let jsonData = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers)

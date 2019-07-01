@@ -9,6 +9,7 @@
 import Foundation
 
 enum Timespan: String {
+    case lastDay = "1days"
     case lastWeek = "1week"
     case lastMonth = "30days"
     case sixtyDays = "60days"
