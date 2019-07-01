@@ -10,11 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var marketPriceLabel: UILabel!
+    @IBOutlet weak var marketPriceDayLabel: UILabel!
+    @IBOutlet weak var marketPriceDateLabel: UILabel!
+    
     private let blockchainClient = BlockchainClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getMarketPrice(at: .lastDay)
     }
 
@@ -25,15 +34,26 @@ class ViewController: UIViewController {
             case .success(let marketPrice):
                 guard let history = marketPrice?.values else { return }
                 guard let value = history.first else {return}
-                let date = value.date
-                let valueUSD = value.usd
-                
-                print(date.stringFromDate())
-                print(valueUSD.usdFromDouble())
+                self.refreshValues(with: value)
                 
             case .failure(let error):
                 print(error)
             }
+        }
+    }
+    
+    private func refreshValues(with value: Value) {
+        DispatchQueue.main.async {
+            
+            self.marketPriceLabel.text = value.usd.usdFromDouble()
+            
+            let day = value.date.stringFromDate(format: "dd")
+            self.marketPriceDayLabel.text = day
+            print(day)
+            
+            let completeDate = value.date.stringFromDate()
+            self.marketPriceDateLabel.text = completeDate
+            print(completeDate)
         }
     }
 
