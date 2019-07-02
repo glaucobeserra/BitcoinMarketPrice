@@ -9,6 +9,7 @@
 import Foundation
 
 struct MarketPrice: Codable {
+    let name: String
     let description: String
     let values: [Value]
 }

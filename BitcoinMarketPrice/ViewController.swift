@@ -10,8 +10,6 @@ import UIKit
 import Charts
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var marketPriceCardView: UIView!
     
     @IBOutlet weak var lastMarketPriceLabel: UILabel!
     @IBOutlet weak var lastMarketPriceDayLabel: UILabel!
@@ -26,32 +24,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var showHistoryButton: UIButton!
     
     @IBOutlet weak var lineChartView: LineChartView!
-    var chartDescription = ""
-    var values: [Value] = []
-    private let blockchainClient = BlockchainClient()
     
-    lazy var valueRangeFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 1
-        formatter.negativeSuffix = " $"
-        formatter.positiveSuffix = " $"
-        
-        return formatter
-    }()
+    private var viewModel = MainViewModel()
     
-    lazy var valueFormatter: NumberFormatter = {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale(identifier: "en_US")
-        
-        return currencyFormatter
-    }()
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        marketPriceCardView.roundView(with: 5)
-//        lineChartView.roundView(with: 5)
         getMarketPrice(at: .lastTwoDays)
     }
 
@@ -62,11 +41,11 @@ class ViewController: UIViewController {
             case .success(let marketPrice):
                 
                 guard let marketPrice = marketPrice else { return }
-                let values = marketPrice.values
+                self.marketPrice = marketPrice
                 
-                self.values = values
+                self.values = marketPrice.values
                 self.chartDescription = marketPrice.description
-                self.refreshValues(with: values)
+                self.refreshValues(with: self.values)
                 self.updateGraph()
                 
             case .failure(let error):
@@ -102,49 +81,44 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateGraph(){
-        var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
-        lineChartView.delegate = self
-        
-        for value in values {
-            let date = value.date.timeIntervalSinceReferenceDate
-            let value = ChartDataEntry(x: date, y: value.usd) // here we set the X and Y status in a data chart entry
-            lineChartEntry.append(value) // here we add it to the data set
-        }
-        
-        
-        let leftAxis = lineChartView.leftAxis
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: valueRangeFormatter)
-        lineChartView.backgroundColor = .white
-        
-        let xAxis = lineChartView.xAxis
-        
-        xAxis.centerAxisLabelsEnabled = true
-        xAxis.valueFormatter = DateValueFormatter()
-        xAxis.granularity = 86400.0
-        xAxis.labelCount = 2
-        xAxis.granularityEnabled = true
-        xAxis.spaceMin = 10
-        xAxis.drawGridLinesEnabled = false
-        
-        lineChartView.rightAxis.enabled = false
-        
-
-        
-        let line1 = LineChartDataSet(entries: lineChartEntry, label: "Bitcoin Market Price (USD)")
-        let lineColor = UIColor(red: 3/255, green: 155/255, blue: 211/255, alpha: 1)
-        line1.colors = [lineColor] //Sets the colour to blue
-        line1.circleRadius = 1.5
-        line1.circleColors = [.red]
-        line1.mode = .cubicBezier
-        
-        let data = LineChartData() //This is the object that will be added to the chart
-        data.addDataSet(line1) //Adds the line to the dataSet
-        data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
-        
-        lineChartView.data = data //finally - it adds the chart data to the chart and causes an update
-        lineChartView.chartDescription?.text = chartDescription // Here we set the description for the graph
-    }
+//    func updateGraph(){
+//        var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
+//        for value in values {
+//            let date = value.date.timeIntervalSinceReferenceDate
+//            let value = ChartDataEntry(x: date, y: value.usd) // here we set the X and Y status in a data chart entry
+//            lineChartEntry.append(value) // here we add it to the data set
+//        }
+//
+//        let leftAxis = lineChartView.leftAxis
+//        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: valueRangeFormatter)
+//
+//        let xAxis = lineChartView.xAxis
+//        xAxis.spaceMin = 10
+//        xAxis.granularity = 86400.0
+//        xAxis.granularityEnabled = true
+//        xAxis.drawGridLinesEnabled = false
+//        xAxis.centerAxisLabelsEnabled = true
+//        lineChartView.rightAxis.enabled = false
+//        xAxis.valueFormatter = DateValueFormatter()
+//
+//
+//        let line = LineChartDataSet(entries: lineChartEntry, label: "Bitcoin Market Price (USD)")
+//        let blueLineColor = UIColor(red: 3/255, green: 155/255, blue: 211/255, alpha: 1)
+//        line.colors = [lineColor]
+//        line.circleRadius = 1.5
+//        line.circleColors = [.red]
+//        line.mode = .cubicBezier
+//
+//        let data = LineChartData()
+//        data.addDataSet(line)
+//        data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
+//
+//
+//        lineChartView.data = data
+//        lineChartView.delegate = self
+//        lineChartView.backgroundColor = .white
+//        lineChartView.chartDescription?.text = chartDescription
+//    }
     
     @IBAction func showHistory(_ sender: UIButton) {
         guard let marketPriceHistoryViewController = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController else {return}
@@ -165,7 +139,6 @@ public class DateValueFormatter: NSObject, IAxisValueFormatter {
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-//        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: value))
     }
 }
