@@ -14,7 +14,7 @@ extension Double {
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
         currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale.current
+        currencyFormatter.locale = Locale(identifier: "en_US")
         
         guard let priceString = currencyFormatter.string(from: NSNumber(value: self)) else {
             return "--"

@@ -9,11 +9,12 @@
 import Foundation
 
 enum Timespan: String {
-    case lastDay = "1days"
-    case lastWeek = "1week"
-    case lastMonth = "30days"
-    case sixtyDays = "60days"
-    case oneHundredEighty = "180days"
-    case lastYear = "1year"
-    case allTime = "all"
+    case lastDay        = "1days"
+    case lastTwoDays    = "2days"
+    case lastWeek       = "1week"
+    case lastMonth      = "30days"
+    case sixtyDays      = "60days"
+    case ninetyDays     = "90days"
+    case lastYear       = "1year"
+    case allTime        = "all"
 }
