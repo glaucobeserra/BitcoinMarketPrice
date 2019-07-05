@@ -198,20 +198,12 @@
 		783C2D7E22C9955500B1D97C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */,
 				783C2D7C22C9954800B1D97C /* Date+Extensions.swift */,
 				783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */,
 				786B224E22CA8EBC0084AF78 /* UIView+Extensions.swift */,
+				783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		783D851022CF26E600F0DA69 /* Organizers */ = {
-			isa = PBXGroup;
-			children = (
-				783D851122CF270500F0DA69 /* PriceComparativeImage.swift */,
-			);
-			path = Organizers;
 			sourceTree = "<group>";
 		};
 		783D851C22CF33D500F0DA69 /* Helpers */ = {
@@ -220,6 +212,7 @@
 				783D851822CF308500F0DA69 /* DateHelper.swift */,
 				783D851A22CF313B00F0DA69 /* NumberHelper.swift */,
 				783D851422CF2DC900F0DA69 /* DateValueFormatter.swift */,
+				783D851122CF270500F0DA69 /* PriceComparativeImage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -229,7 +222,6 @@
 			children = (
 				783D851C22CF33D500F0DA69 /* Helpers */,
 				783C2D7E22C9955500B1D97C /* Extensions */,
-				783D851022CF26E600F0DA69 /* Organizers */,
 			);
 			path = Core;
 			sourceTree = "<group>";

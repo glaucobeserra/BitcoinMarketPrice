@@ -52,7 +52,7 @@ class MainViewModel: NSObject {
         
     }
     
-    private func getMarketPrice(at timespan: Timespan) {
+    func getMarketPrice(at timespan: Timespan) {
         blockchainClient.getMarketPrice(at: timespan) { [weak self] result in
             switch result {
             case .success(let marketPrice):

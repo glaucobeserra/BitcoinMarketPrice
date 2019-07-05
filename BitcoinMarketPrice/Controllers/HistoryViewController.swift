@@ -11,95 +11,34 @@ import Charts
 
 class HistoryViewController: UIViewController {
     
-    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet private weak var lineChartView: LineChartView!
     
-    lazy var valueRangeFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 1
-        formatter.negativeSuffix = " $"
-        formatter.positiveSuffix = " $"
-        
-        return formatter
+    private lazy var viewModel: MainViewModel = {
+        return MainViewModel(timespan: .lastWeek)
     }()
-    
-    lazy var valueFormatter: NumberFormatter = {
-        let currencyFormatter = NumberFormatter()
-        currencyFormatter.usesGroupingSeparator = true
-        currencyFormatter.numberStyle = .currency
-        currencyFormatter.locale = Locale(identifier: "en_US")
-        
-        return currencyFormatter
-    }()
-    
-    private let blockchainClient = BlockchainClient()
-    var chartDescription = ""
-    var values: [Value] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMarketPrice(at: .lastMonth)
+        setupView()
     }
     
-    private func getMarketPrice(at timespan: Timespan) {
-        blockchainClient.getMarketPrice(at: timespan) { result in
-            switch result {
-            case .success(let marketPrice):
-                
-                guard let marketPrice = marketPrice else { return }
-                let values = marketPrice.values
-                
-                self.values = values
-                self.chartDescription = marketPrice.description
-//                self.refreshValues(with: values)
-                self.updateGraph()
-                
-            case .failure(let error):
-                print(error)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupViewModel()
+    }
+    
+    private func setupView() {
+        guard let marketPrice = viewModel.marketPrice else  { return }
+        lineChartView.setupLineChartView(with: marketPrice)
+        lineChartView.delegate = self
+    }
+    
+    private func setupViewModel() {
+        viewModel.onInformationLoaded = { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.setupView()
             }
         }
-    }
-    
-    func updateGraph(){
-        var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
-        
-        for value in values {
-            let date = value.date.timeIntervalSinceReferenceDate
-            let value = ChartDataEntry(x: date, y: value.usd) // here we set the X and Y status in a data chart entry
-            lineChartEntry.append(value) // here we add it to the data set
-        }
-        
-        
-        let leftAxis = lineChartView.leftAxis
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: valueRangeFormatter)
-        lineChartView.backgroundColor = .white
-        
-        let xAxis = lineChartView.xAxis
-        
-        xAxis.centerAxisLabelsEnabled = true
-        xAxis.valueFormatter = DateValueFormatter()
-        xAxis.granularity = 86400.0
-        xAxis.labelCount = 2
-        xAxis.granularityEnabled = true
-        xAxis.spaceMin = 10
-        xAxis.drawGridLinesEnabled = false
-        
-        lineChartView.rightAxis.enabled = false
-        
-        
-        
-        let line1 = LineChartDataSet(entries: lineChartEntry, label: "Bitcoin Market Price (USD)")
-        let lineColor = UIColor(red: 3/255, green: 155/255, blue: 211/255, alpha: 1)
-        line1.colors = [lineColor] //Sets the colour to blue
-        line1.circleRadius = 1.5
-        line1.circleColors = [.red]
-        line1.mode = .cubicBezier
-        
-        let data = LineChartData() //This is the object that will be added to the chart
-        data.addDataSet(line1) //Adds the line to the dataSet
-        data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
-        
-        lineChartView.data = data //finally - it adds the chart data to the chart and causes an update
-        lineChartView.chartDescription?.text = chartDescription // Here we set the description for the graph
     }
     
     // MARK:- Actions
@@ -108,17 +47,27 @@ class HistoryViewController: UIViewController {
     }
     
     @IBAction func getLastWeek(_ sender: UIButton) {
-        getMarketPrice(at: .lastWeek)
+        viewModel.getMarketPrice(at: .lastWeek)
+        
     }
     @IBAction func getLastMonth(_ sender: UIButton) {
-        getMarketPrice(at: .lastMonth)
+        viewModel.getMarketPrice(at: .lastMonth)
     }
     
     @IBAction func getSixtyDays(_ sender: UIButton) {
-        getMarketPrice(at: .sixtyDays)
+        viewModel.getMarketPrice(at: .sixtyDays)
     }
     @IBAction func getNinetyDays(_ sender: UIButton) {
-        getMarketPrice(at: .ninetyDays)
+        viewModel.getMarketPrice(at: .ninetyDays)
     }
     
+}
+
+// MARK: - Extension ChartViewDelegate
+extension HistoryViewController: ChartViewDelegate {
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        lineChartView.centerViewToAnimated(xValue: entry.x, yValue: entry.y,
+                                           axis: lineChartView.data!.getDataSetByIndex(highlight.dataSetIndex).axisDependency,
+                                           duration: 1)
+    }
 }

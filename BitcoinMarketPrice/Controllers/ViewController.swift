@@ -34,7 +34,7 @@ class ViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupInformation()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     
     // MARk: - Methods
-    private func setupInformation() {
+    private func setupView() {
         lastMarketPriceLabel.text = viewModel.lastMarketPrice
         lastMarketPriceDayLabel.text = viewModel.lastMarketPriceDay
         lastMarketPriceDateLabel.text = viewModel.lastMarketPriceDate
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
     private func setupViewModel() {
         viewModel.onInformationLoaded = { [weak self] _ in
             DispatchQueue.main.async {
-                self?.setupInformation()
+                self?.setupView()
             }
         }
     }
