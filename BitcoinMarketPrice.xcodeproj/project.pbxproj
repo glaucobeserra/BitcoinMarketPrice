@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3C6A168B28A5432001F87707 /* Pods_BitcoinMarketPrice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25AEB0CE26B1D0ACA54C961C /* Pods_BitcoinMarketPrice.framework */; };
-		780E892822CADF860054F1B3 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E892722CADF860054F1B3 /* MainViewModel.swift */; };
 		783C2D4222C96E3F00B1D97C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D4122C96E3F00B1D97C /* AppDelegate.swift */; };
 		783C2D4422C96E3F00B1D97C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D4322C96E3F00B1D97C /* ViewController.swift */; };
 		783C2D4722C96E3F00B1D97C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 783C2D4522C96E3F00B1D97C /* Main.storyboard */; };
@@ -27,7 +26,6 @@
 		783C2D7822C9719000B1D97C /* MarketPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7722C9719000B1D97C /* MarketPrice.swift */; };
 		783C2D7D22C9954800B1D97C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7C22C9954800B1D97C /* Date+Extensions.swift */; };
 		783C2D8022C9973E00B1D97C /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */; };
-		783D850D22CEEFB500F0DA69 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D850C22CEEFB500F0DA69 /* MainViewModel.swift */; };
 		786B224F22CA8EBC0084AF78 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B224E22CA8EBC0084AF78 /* UIView+Extensions.swift */; };
 		786B225122CAAB160084AF78 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B225022CAAB160084AF78 /* HistoryViewController.swift */; };
 		990EBBA795EF456A1B4C7C02 /* Pods_BitcoinMarketPriceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D61D10EA159413D5E9758BE /* Pods_BitcoinMarketPriceTests.framework */; };
@@ -47,7 +45,6 @@
 		25AEB0CE26B1D0ACA54C961C /* Pods_BitcoinMarketPrice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitcoinMarketPrice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DF3C452B4584759BE8033F8 /* Pods-BitcoinMarketPrice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinMarketPrice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinMarketPrice/Pods-BitcoinMarketPrice.debug.xcconfig"; sourceTree = "<group>"; };
 		6D61D10EA159413D5E9758BE /* Pods_BitcoinMarketPriceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitcoinMarketPriceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		780E892722CADF860054F1B3 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		783C2D3E22C96E3F00B1D97C /* BitcoinMarketPrice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinMarketPrice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		783C2D4122C96E3F00B1D97C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		783C2D4322C96E3F00B1D97C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,7 +67,6 @@
 		783C2D7722C9719000B1D97C /* MarketPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketPrice.swift; sourceTree = "<group>"; };
 		783C2D7C22C9954800B1D97C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
-		783D850C22CEEFB500F0DA69 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		786B224E22CA8EBC0084AF78 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		786B225022CAAB160084AF78 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7DDE08BBE1EF6357237E5D50 /* Pods-BitcoinMarketPrice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinMarketPrice.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinMarketPrice/Pods-BitcoinMarketPrice.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,14 +133,12 @@
 				783C2D7622C9718000B1D97C /* Model */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
 				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
-				783D850C22CEEFB500F0DA69 /* MainViewModel.swift */,
 				783C2D4522C96E3F00B1D97C /* Main.storyboard */,
 				783C2D4B22C96E4100B1D97C /* Assets.xcassets */,
 				783C2D4D22C96E4100B1D97C /* LaunchScreen.storyboard */,
 				783C2D5022C96E4100B1D97C /* Info.plist */,
 				783C2D4822C96E3F00B1D97C /* BitcoinMarketPrice.xcdatamodeld */,
 				786B225022CAAB160084AF78 /* HistoryViewController.swift */,
-				780E892722CADF860054F1B3 /* MainViewModel.swift */,
 			);
 			path = BitcoinMarketPrice;
 			sourceTree = "<group>";
@@ -389,7 +383,6 @@
 				783C2D6B22C9705C00B1D97C /* EndPoint.swift in Sources */,
 				783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */,
 				786B225122CAAB160084AF78 /* HistoryViewController.swift in Sources */,
-				783D850D22CEEFB500F0DA69 /* MainViewModel.swift in Sources */,
 				783C2D7222C9714100B1D97C /* BlockchainServices.swift in Sources */,
 				783C2D7322C9714100B1D97C /* Timespan.swift in Sources */,
 				783C2D7D22C9954800B1D97C /* Date+Extensions.swift in Sources */,

@@ -11,6 +11,7 @@ import Charts
 
 class ViewController: UIViewController {
 
+    // MARK:- Outlets
     @IBOutlet private weak var marketPriceCardView: UIView!
     
     @IBOutlet private weak var lastMarketPriceLabel: UILabel!
@@ -22,15 +23,10 @@ class ViewController: UIViewController {
     @IBOutlet private weak var beforeTheLastMarketPriceDateLabel: UILabel!
     
     @IBOutlet private weak var compareMarketPriceIcon: UIImageView!
-    
     @IBOutlet private weak var showHistoryButton: UIButton!
-    
     @IBOutlet private weak var lineChartView: LineChartView!
     
-//    private var chartDescription = ""
-//    private var values: [Value] = []
-//    private let blockchainClient = BlockchainClient()
-    
+    // MARK: - Properties
     private lazy var viewModel: MainViewModel = {
         return MainViewModel(timespan: .lastTwoDays)
     }()
@@ -44,8 +40,17 @@ class ViewController: UIViewController {
         return formatter
     }()
     
-
+    private lazy var valueFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: "en_US")
+        
+        return formatter
+    }()
     
+
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInformation()
@@ -53,21 +58,24 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupViewModel()
     }
     
+    // MARk: - Methods
     private func setupInformation() {
         lastMarketPriceLabel.text = viewModel.lastMarketPrice
         lastMarketPriceDayLabel.text = viewModel.lastMarketPriceDay
         lastMarketPriceDateLabel.text = viewModel.lastMarketPriceDate
-        
         
         beforeTheLastMarketPriceLabel.text = viewModel.beforeTheLastMarketPrice
         beforeTheLastMarketPriceDayLabel.text = viewModel.beforeTheLastMarketPriceDay
         beforeTheLastMarketPriceDateLabel.text = viewModel.beforeTheLastMarketPriceDate
         
         compareMarketPriceIcon.image = viewModel.comparativeMarketPriceImage
+        
+        guard let marketPrice = viewModel.marketPrice else  { return }
+        
+        updateGraph(with: marketPrice)
     }
 
     private func setupViewModel() {
@@ -78,13 +86,11 @@ class ViewController: UIViewController {
         }
     }
     
-    /*
-    
-    func updateGraph(){
+    func updateGraph(with marketPrice: MarketPrice){
         var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
         lineChartView.delegate = self
         
-        for value in values {
+        for value in marketPrice.values {
             let date = value.date.timeIntervalSinceReferenceDate
             let value = ChartDataEntry(x: date, y: value.usd) // here we set the X and Y status in a data chart entry
             lineChartEntry.append(value) // here we add it to the data set
@@ -100,16 +106,16 @@ class ViewController: UIViewController {
         xAxis.centerAxisLabelsEnabled = true
         xAxis.valueFormatter = DateValueFormatter()
         xAxis.granularity = 86400.0
-        xAxis.labelCount = 2
+//        xAxis.labelCount = 2
         xAxis.granularityEnabled = true
-        xAxis.spaceMin = 10
+//        xAxis.spaceMin = 10
         xAxis.drawGridLinesEnabled = false
         
         lineChartView.rightAxis.enabled = false
         
 
         
-        let line1 = LineChartDataSet(entries: lineChartEntry, label: "Bitcoin Market Price (USD)")
+        let line1 = LineChartDataSet(entries: lineChartEntry, label: marketPrice.name)
         let lineColor = UIColor(red: 3/255, green: 155/255, blue: 211/255, alpha: 1)
         line1.colors = [lineColor] //Sets the colour to blue
         line1.circleRadius = 1.5
@@ -121,11 +127,10 @@ class ViewController: UIViewController {
         data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
         
         lineChartView.data = data //finally - it adds the chart data to the chart and causes an update
-        lineChartView.chartDescription?.text = chartDescription // Here we set the description for the graph
+        lineChartView.chartDescription?.text = marketPrice.description // Here we set the description for the graph
     }
- 
- */
-    
+
+    // MARK: - Actions
     @IBAction func showHistory(_ sender: UIButton) {
         guard let marketPriceHistoryViewController = storyboard?.instantiateViewController(withIdentifier: "HistoryViewController") as? HistoryViewController else {return}
         DispatchQueue.main.async {
@@ -149,7 +154,7 @@ public class DateValueFormatter: NSObject, IAxisValueFormatter {
     }
 }
 
-
+// MARK: - Extension ChartViewDelegate
 extension ViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         lineChartView.centerViewToAnimated(xValue: entry.x, yValue: entry.y,
