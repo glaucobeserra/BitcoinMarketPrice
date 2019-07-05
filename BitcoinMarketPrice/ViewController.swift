@@ -30,25 +30,6 @@ class ViewController: UIViewController {
     private lazy var viewModel: MainViewModel = {
         return MainViewModel(timespan: .lastTwoDays)
     }()
-    
-    lazy var valueRangeFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.maximumFractionDigits = 1
-        formatter.negativeSuffix = " $"
-        formatter.positiveSuffix = " $"
-        
-        return formatter
-    }()
-    
-    private lazy var valueFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
-        formatter.numberStyle = .currency
-        formatter.locale = Locale(identifier: "en_US")
-        
-        return formatter
-    }()
-    
 
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -74,8 +55,8 @@ class ViewController: UIViewController {
         compareMarketPriceIcon.image = viewModel.comparativeMarketPriceImage
         
         guard let marketPrice = viewModel.marketPrice else  { return }
-        
-        updateGraph(with: marketPrice)
+        lineChartView.setupLineChartView(with: marketPrice)
+        lineChartView.delegate = self
     }
 
     private func setupViewModel() {
@@ -84,50 +65,6 @@ class ViewController: UIViewController {
                 self?.setupInformation()
             }
         }
-    }
-    
-    func updateGraph(with marketPrice: MarketPrice){
-        var lineChartEntry  = [ChartDataEntry]() //this is the Array that will eventually be displayed on the graph.
-        lineChartView.delegate = self
-        
-        for value in marketPrice.values {
-            let date = value.date.timeIntervalSinceReferenceDate
-            let value = ChartDataEntry(x: date, y: value.usd) // here we set the X and Y status in a data chart entry
-            lineChartEntry.append(value) // here we add it to the data set
-        }
-        
-        
-        let leftAxis = lineChartView.leftAxis
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: valueRangeFormatter)
-        lineChartView.backgroundColor = .white
-        
-        let xAxis = lineChartView.xAxis
-        
-        xAxis.centerAxisLabelsEnabled = true
-        xAxis.valueFormatter = DateValueFormatter()
-        xAxis.granularity = 86400.0
-//        xAxis.labelCount = 2
-        xAxis.granularityEnabled = true
-//        xAxis.spaceMin = 10
-        xAxis.drawGridLinesEnabled = false
-        
-        lineChartView.rightAxis.enabled = false
-        
-
-        
-        let line1 = LineChartDataSet(entries: lineChartEntry, label: marketPrice.name)
-        let lineColor = UIColor(red: 3/255, green: 155/255, blue: 211/255, alpha: 1)
-        line1.colors = [lineColor] //Sets the colour to blue
-        line1.circleRadius = 1.5
-        line1.circleColors = [.red]
-        line1.mode = .cubicBezier
-        
-        let data = LineChartData() //This is the object that will be added to the chart
-        data.addDataSet(line1) //Adds the line to the dataSet
-        data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
-        
-        lineChartView.data = data //finally - it adds the chart data to the chart and causes an update
-        lineChartView.chartDescription?.text = marketPrice.description // Here we set the description for the graph
     }
 
     // MARK: - Actions
@@ -140,20 +77,6 @@ class ViewController: UIViewController {
     
 }
 
-public class DateValueFormatter: NSObject, IAxisValueFormatter {
-    private let dateFormatter = DateFormatter()
-    
-    override init() {
-        super.init()
-        dateFormatter.dateFormat = "dd MMM"
-        dateFormatter.timeZone = TimeZone(identifier: "GMT-3")
-    }
-    
-    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return dateFormatter.string(from: Date(timeIntervalSinceReferenceDate: value))
-    }
-}
-
 // MARK: - Extension ChartViewDelegate
 extension ViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
@@ -162,3 +85,8 @@ extension ViewController: ChartViewDelegate {
                                             duration: 1)
     }
 }
+
+
+
+
+

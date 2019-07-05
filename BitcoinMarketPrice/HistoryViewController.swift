@@ -102,6 +102,7 @@ class HistoryViewController: UIViewController {
         lineChartView.chartDescription?.text = chartDescription // Here we set the description for the graph
     }
     
+    // MARK:- Actions
     @IBAction func closeHistory(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -119,6 +120,5 @@ class HistoryViewController: UIViewController {
     @IBAction func getNinetyDays(_ sender: UIButton) {
         getMarketPrice(at: .ninetyDays)
     }
-    
     
 }
