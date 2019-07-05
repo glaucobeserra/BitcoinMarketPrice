@@ -11,12 +11,15 @@ import Charts
 
 class HistoryViewController: UIViewController {
     
+    // MARK:- Outlets
     @IBOutlet private weak var lineChartView: LineChartView!
     
-    private lazy var viewModel: MainViewModel = {
-        return MainViewModel(timespan: .lastWeek)
+    // MARK:- Properties
+    private lazy var viewModel: MarketPriceViewModel = {
+        return MarketPriceViewModel(timespan: .lastWeek)
     }()
 
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -26,6 +29,8 @@ class HistoryViewController: UIViewController {
         super.viewWillAppear(animated)
         setupViewModel()
     }
+    
+    // MARK:- Methods
     
     private func setupView() {
         guard let marketPrice = viewModel.marketPrice else  { return }

@@ -26,7 +26,7 @@
 		783C2D7822C9719000B1D97C /* MarketPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7722C9719000B1D97C /* MarketPrice.swift */; };
 		783C2D7D22C9954800B1D97C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7C22C9954800B1D97C /* Date+Extensions.swift */; };
 		783C2D8022C9973E00B1D97C /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */; };
-		783D850F22CF168700F0DA69 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D850E22CF168700F0DA69 /* MainViewModel.swift */; };
+		783D850F22CF168700F0DA69 /* MarketPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D850E22CF168700F0DA69 /* MarketPriceViewModel.swift */; };
 		783D851222CF270500F0DA69 /* PriceComparativeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D851122CF270500F0DA69 /* PriceComparativeImage.swift */; };
 		783D851522CF2DC900F0DA69 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D851422CF2DC900F0DA69 /* DateValueFormatter.swift */; };
 		783D851722CF2E5400F0DA69 /* LineChartView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */; };
@@ -73,7 +73,7 @@
 		783C2D7722C9719000B1D97C /* MarketPrice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketPrice.swift; sourceTree = "<group>"; };
 		783C2D7C22C9954800B1D97C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
-		783D850E22CF168700F0DA69 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		783D850E22CF168700F0DA69 /* MarketPriceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketPriceViewModel.swift; sourceTree = "<group>"; };
 		783D851122CF270500F0DA69 /* PriceComparativeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceComparativeImage.swift; sourceTree = "<group>"; };
 		783D851422CF2DC900F0DA69 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineChartView+Extension.swift"; sourceTree = "<group>"; };
@@ -140,16 +140,16 @@
 		783C2D4022C96E3F00B1D97C /* BitcoinMarketPrice */ = {
 			isa = PBXGroup;
 			children = (
-				783D851F22CF34B700F0DA69 /* ViewModel */,
 				783D851E22CF346C00F0DA69 /* Controllers */,
-				783D851D22CF341800F0DA69 /* Core */,
+				783D851F22CF34B700F0DA69 /* ViewModel */,
 				783C2D6422C9703200B1D97C /* Networking */,
 				783C2D7622C9718000B1D97C /* Model */,
+				783D851D22CF341800F0DA69 /* Core */,
+				783C2D5022C96E4100B1D97C /* Info.plist */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
 				783C2D4522C96E3F00B1D97C /* Main.storyboard */,
-				783C2D4B22C96E4100B1D97C /* Assets.xcassets */,
 				783C2D4D22C96E4100B1D97C /* LaunchScreen.storyboard */,
-				783C2D5022C96E4100B1D97C /* Info.plist */,
+				783C2D4B22C96E4100B1D97C /* Assets.xcassets */,
 				783C2D4822C96E3F00B1D97C /* BitcoinMarketPrice.xcdatamodeld */,
 			);
 			path = BitcoinMarketPrice;
@@ -238,7 +238,7 @@
 		783D851F22CF34B700F0DA69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				783D850E22CF168700F0DA69 /* MainViewModel.swift */,
+				783D850E22CF168700F0DA69 /* MarketPriceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -437,7 +437,7 @@
 				783C2D7422C9714100B1D97C /* BlockchainClient.swift in Sources */,
 				783D851722CF2E5400F0DA69 /* LineChartView+Extension.swift in Sources */,
 				786B225122CAAB160084AF78 /* HistoryViewController.swift in Sources */,
-				783D850F22CF168700F0DA69 /* MainViewModel.swift in Sources */,
+				783D850F22CF168700F0DA69 /* MarketPriceViewModel.swift in Sources */,
 				783D851922CF308500F0DA69 /* DateHelper.swift in Sources */,
 				783C2D7222C9714100B1D97C /* BlockchainServices.swift in Sources */,
 				783C2D7322C9714100B1D97C /* Timespan.swift in Sources */,

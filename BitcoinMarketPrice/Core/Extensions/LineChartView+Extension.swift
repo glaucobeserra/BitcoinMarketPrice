@@ -49,5 +49,6 @@ extension LineChartView {
         data.setValueFormatter(DefaultValueFormatter(formatter: valueFormatter))
         
         self.data = data
+        self.chartDescription?.text = marketPrice.description
     }
 }

@@ -12,8 +12,6 @@ import Charts
 class ViewController: UIViewController {
 
     // MARK:- Outlets
-    @IBOutlet private weak var marketPriceCardView: UIView!
-    
     @IBOutlet private weak var lastMarketPriceLabel: UILabel!
     @IBOutlet private weak var lastMarketPriceDayLabel: UILabel!
     @IBOutlet private weak var lastMarketPriceDateLabel: UILabel!
@@ -27,8 +25,8 @@ class ViewController: UIViewController {
     @IBOutlet private weak var lineChartView: LineChartView!
     
     // MARK: - Properties
-    private lazy var viewModel: MainViewModel = {
-        return MainViewModel(timespan: .lastTwoDays)
+    private lazy var viewModel: MarketPriceViewModel = {
+        return MarketPriceViewModel(timespan: .lastTwoDays)
     }()
 
     // MARK: - Life cycle
@@ -42,7 +40,7 @@ class ViewController: UIViewController {
         setupViewModel()
     }
     
-    // MARk: - Methods
+    // MARK: - Methods
     private func setupView() {
         lastMarketPriceLabel.text = viewModel.lastMarketPrice
         lastMarketPriceDayLabel.text = viewModel.lastMarketPriceDay

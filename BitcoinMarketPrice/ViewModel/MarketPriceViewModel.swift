@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  MarketPriceViewModel.swift
 //  BitcoinMarketPrice
 //
 //  Created by Glauco Dantas Beserra on 04/07/19.
@@ -9,7 +9,7 @@
 import UIKit
 import Charts
 
-class MainViewModel: NSObject {
+class MarketPriceViewModel: NSObject {
     
     // MARK:- Stored properties
     var onInformationLoaded: ((MarketPrice?) -> Void)?
@@ -68,7 +68,7 @@ class MainViewModel: NSObject {
 
 // MARK: - Public properties
 
-extension MainViewModel {
+extension MarketPriceViewModel {
     
     // - Last market price properties
     
