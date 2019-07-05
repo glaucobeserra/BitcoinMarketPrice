@@ -140,23 +140,17 @@
 		783C2D4022C96E3F00B1D97C /* BitcoinMarketPrice */ = {
 			isa = PBXGroup;
 			children = (
-				783D851022CF26E600F0DA69 /* Organizers */,
+				783D851F22CF34B700F0DA69 /* ViewModel */,
+				783D851E22CF346C00F0DA69 /* Controllers */,
+				783D851D22CF341800F0DA69 /* Core */,
 				783C2D6422C9703200B1D97C /* Networking */,
-				783C2D7E22C9955500B1D97C /* Extensions */,
 				783C2D7622C9718000B1D97C /* Model */,
 				783C2D4122C96E3F00B1D97C /* AppDelegate.swift */,
-				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
-				783D850E22CF168700F0DA69 /* MainViewModel.swift */,
 				783C2D4522C96E3F00B1D97C /* Main.storyboard */,
 				783C2D4B22C96E4100B1D97C /* Assets.xcassets */,
 				783C2D4D22C96E4100B1D97C /* LaunchScreen.storyboard */,
 				783C2D5022C96E4100B1D97C /* Info.plist */,
 				783C2D4822C96E3F00B1D97C /* BitcoinMarketPrice.xcdatamodeld */,
-				786B225022CAAB160084AF78 /* HistoryViewController.swift */,
-				783D851422CF2DC900F0DA69 /* DateValueFormatter.swift */,
-				783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */,
-				783D851822CF308500F0DA69 /* DateHelper.swift */,
-				783D851A22CF313B00F0DA69 /* NumberHelper.swift */,
 			);
 			path = BitcoinMarketPrice;
 			sourceTree = "<group>";
@@ -204,6 +198,7 @@
 		783C2D7E22C9955500B1D97C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				783D851622CF2E5400F0DA69 /* LineChartView+Extension.swift */,
 				783C2D7C22C9954800B1D97C /* Date+Extensions.swift */,
 				783C2D7F22C9973E00B1D97C /* Double+Extensions.swift */,
 				786B224E22CA8EBC0084AF78 /* UIView+Extensions.swift */,
@@ -217,6 +212,43 @@
 				783D851122CF270500F0DA69 /* PriceComparativeImage.swift */,
 			);
 			path = Organizers;
+			sourceTree = "<group>";
+		};
+		783D851C22CF33D500F0DA69 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				783D851822CF308500F0DA69 /* DateHelper.swift */,
+				783D851A22CF313B00F0DA69 /* NumberHelper.swift */,
+				783D851422CF2DC900F0DA69 /* DateValueFormatter.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		783D851D22CF341800F0DA69 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				783D851C22CF33D500F0DA69 /* Helpers */,
+				783C2D7E22C9955500B1D97C /* Extensions */,
+				783D851022CF26E600F0DA69 /* Organizers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		783D851E22CF346C00F0DA69 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				783C2D4322C96E3F00B1D97C /* ViewController.swift */,
+				786B225022CAAB160084AF78 /* HistoryViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		783D851F22CF34B700F0DA69 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				783D850E22CF168700F0DA69 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9D00A99D70B36F609A2B2582 /* Frameworks */ = {

@@ -11,11 +11,18 @@ import Charts
 
 class MainViewModel: NSObject {
     
-    private let numberHelper = NumberHelper.shared
-    private let dateHelper = DateHelper.shared
-
+    // MARK:- Stored properties
     var onInformationLoaded: ((MarketPrice?) -> Void)?
     var onInformationFailed: ((String?) -> Void)?
+    
+    private let numberHelper = NumberHelper.shared
+    private let dateHelper = DateHelper.shared
+    
+    var marketPrice: MarketPrice? {
+        didSet {
+            onInformationLoaded?(marketPrice)
+        }
+    }
     
     private let blockchainClient: BlockchainClient
     private let timespan: Timespan
@@ -28,41 +35,10 @@ class MainViewModel: NSObject {
         getMarketPrice(at: self.timespan)
     }
     
-    var marketPrice: MarketPrice? {
-        didSet {
-            onInformationLoaded?(marketPrice)
-        }
-    }
-    // last values
-    
     private var lastValue: Value? {
         let lastValue = marketPrice?.values.last
         return lastValue
     }
-    
-    var lastMarketPrice: String {
-        guard let value = lastValue else { return "--" }
-        let valueUSD = NSNumber(value: value.usd)
-        let formatter = numberHelper.valueFormatter
-        guard let formattedValue = formatter.string(from: valueUSD) else { return "--" }
-        return formattedValue
-    }
-    
-    var lastMarketPriceDate: String {
-        guard let value = lastValue else { return "--" }
-        let formatter = dateHelper.completeDateFormatter
-        let formattedDate = formatter.string(from: value.date)
-        return formattedDate
-    }
-    
-    var lastMarketPriceDay: String {
-        guard let value = lastValue else { return "--" }
-        let formatter = dateHelper.dayFormatter
-        let formattedDate = formatter.string(from: value.date)
-        return formattedDate
-    }
-    
-    // before the last values
     
     private var beforeTheLastValue: Value? {
         guard let values = marketPrice?.values else {return nil}
@@ -75,6 +51,50 @@ class MainViewModel: NSObject {
         return nil
         
     }
+    
+    private func getMarketPrice(at timespan: Timespan) {
+        blockchainClient.getMarketPrice(at: timespan) { [weak self] result in
+            switch result {
+            case .success(let marketPrice):
+                
+                guard let marketPrice = marketPrice else { return }
+                self?.marketPrice = marketPrice
+            case .failure(let error):
+                self?.onInformationFailed?(error.localizedDescription)
+            }
+        }
+    }
+}
+
+// MARK: - Public properties
+
+extension MainViewModel {
+    
+    // - Last market price properties
+    
+    var lastMarketPrice: String {
+        guard let value = lastValue else { return "--" }
+        let valueUSD = NSNumber(value: value.usd)
+        let formatter = numberHelper.valueFormatter
+        guard let formattedValue = formatter.string(from: valueUSD) else { return "--" }
+        return formattedValue
+    }
+    
+    var lastMarketPriceDay: String {
+        guard let value = lastValue else { return "--" }
+        let formatter = dateHelper.dayFormatter
+        let formattedDate = formatter.string(from: value.date)
+        return formattedDate
+    }
+    
+    var lastMarketPriceDate: String {
+        guard let value = lastValue else { return "--" }
+        let formatter = dateHelper.completeDateFormatter
+        let formattedDate = formatter.string(from: value.date)
+        return formattedDate
+    }
+    
+    // - Before the last market price properties
     
     var beforeTheLastMarketPrice: String {
         guard let value = beforeTheLastValue else { return "--" }
@@ -109,19 +129,5 @@ class MainViewModel: NSObject {
         }
         
         return ComparativePriceImage.indifferent.image
-    }
-    
-    
-    private func getMarketPrice(at timespan: Timespan) {
-        blockchainClient.getMarketPrice(at: timespan) { [weak self] result in
-            switch result {
-            case .success(let marketPrice):
-                
-                guard let marketPrice = marketPrice else { return }
-                self?.marketPrice = marketPrice
-            case .failure(let error):
-                self?.onInformationFailed?(error.localizedDescription)
-            }
-        }
     }
 }
