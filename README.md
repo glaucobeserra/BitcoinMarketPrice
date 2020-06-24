@@ -1,5 +1,4 @@
 # Bitcoin Market Price
-### DB1 Global Software Code Challenge - iOS
 
 ### Preview
 ![](preview.gif)
